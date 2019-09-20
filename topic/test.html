@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl"> 
+
+<p>Today's welcome message is:</p>
+
+<h1>{{myWelcome}}</h1>
+
+</div>
+
+<p>The $http service requests a page on the server, and the response is set as the value of the "myWelcome" variable.</p>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  // $http.get("http://localhost:8080/api/product/read.php")
+  // .then(function(response) {
+  //     console.log(response.data.records);
+  // });
+
+
+  var dataObj = {
+				id: "60",
+				name: "G SHOCK",
+				description: "Luxury watch.",
+				price: "150",
+				category_id: "1",
+				category_name: "Fashion"
+		};	
+		var res = $http.post('http://localhost:8080/api/product/update.php', dataObj);
+		res.then(function(response) {
+			console.log(response);
+			console.log('ok');
+		});
+});
+</script>
+
+</body>
+</html>
